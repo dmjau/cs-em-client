@@ -43,8 +43,22 @@ const EmployeeTable = (props) => {
                   : employee.designer_type}
               </td>
               <td>
-                <button className="button muted-button">Edit</button>
-                <button className="button muted-button">Delete</button>
+                <button
+                  className="button muted-button"
+                  onClick={() => {
+                    props.editRow(employee);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="button muted-button"
+                  onClick={() => {
+                    props.deleteEmployee(employee.id);
+                  }}
+                >
+                  Delete
+                </button>
                 <button className="button muted-button">Details</button>
               </td>
             </tr>

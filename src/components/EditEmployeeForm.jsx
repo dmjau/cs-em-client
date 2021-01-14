@@ -1,14 +1,24 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const AddEmployeeForm = (props) => {
-  const { register, errors, handleSubmit } = useForm();
+const EditEmployeeForm = (props) => {
+  console.log(props.currentEmployee);
+
+  const { register, errors, handleSubmit, setValue } = useForm({
+    defaultValues: props.currentEmployee
+  });
+
+  setValue('first_name', props.currentEmployee.first_name);
+  setValue('last_name', props.currentEmployee.last_name);
+  setValue('birth_date', props.currentEmployee.birth_date);
+  setValue('employee_type', props.currentEmployee.employee_type);
+  setValue('designer_type', props.currentEmployee.designer_type);
+  setValue('programming_language', props.currentEmployee.programming_language);
 
   const onSubmit = (data, e) => {
-    data.id = null;
-    data.company_id = '1';
-
     console.log(data);
+    data.id = props.currentEmployee.id;
+    data.company_id = '1';
 
     //Validate empty fields
     if (data.designer_type === '') {
@@ -17,8 +27,7 @@ const AddEmployeeForm = (props) => {
       data.programming_language = null;
     }
 
-    console.log(data.birth_date);
-    props.addEmployee(data);
+    props.updateEmployee(props.currentEmployee.id, data);
 
     //Clean fields
     e.target.reset();
@@ -98,9 +107,9 @@ const AddEmployeeForm = (props) => {
           <div>{errors?.programmingLanguage?.message}</div>
         </div>
       </div>
-      <button type="submit">Add new employee</button>
+      <button type="submit">Edit</button>
     </form>
   );
 };
 
-export default AddEmployeeForm;
+export default EditEmployeeForm;
