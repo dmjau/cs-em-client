@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import EmployeeTable from './components/EmployeeTable';
 import { v4 as uuidv4 } from 'uuid';
+import AddEmployeeForm from './components/AddEmployeeForm';
 
 function App() {
   const employeesData = [
@@ -59,12 +60,19 @@ function App() {
   //State
   const [employees, setEmployees] = useState(employeesData);
 
+  //Add New User
+  const addEmployee = (employee) => {
+    employee.id = uuidv4();
+    setEmployees([...employees, employee]);
+  };
+
   return (
     <div className="container">
       <h1>HEADER</h1>
       <div className="flex-row">
         <div className="flex-large">
           <h2>Add Employee</h2>
+          <AddEmployeeForm addEmployee={addEmployee} />
         </div>
         <div className="flex-large">
           <h2>View Employee Detail</h2>
