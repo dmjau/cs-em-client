@@ -138,7 +138,6 @@ function App() {
       </div>
       <div className="flex-row">
         {/* Table whit all employees */}
-        <h4>All Employees</h4>
         <EmployeeTable
           employees={employees}
           deleteEmployee={deleteEmployee}

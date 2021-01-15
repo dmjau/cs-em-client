@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 const EmployeeTable = (props) => {
@@ -19,57 +18,62 @@ const EmployeeTable = (props) => {
   }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Age</th>
-          <th>Role</th>
-          <th>Expertise</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.employees.length > 0 ? (
-          props.employees.map((employee) => (
-            <tr key={employee.id}>
-              <td>{employee.first_name}</td>
-              <td>{employee.last_name}</td>
-              <td>{getEdad(employee.birth_day)}</td>
-              <td>{employee.employee_type}</td>
-              <td>
-                {employee.designer_type === null
-                  ? employee.programming_language
-                  : employee.designer_type}
-              </td>
-              <td>
-                <button
-                  className="button muted-button"
-                  onClick={() => {
-                    props.editRow(employee);
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="button muted-button"
-                  onClick={() => {
-                    props.deleteEmployee(employee.id);
-                  }}
-                >
-                  Delete
-                </button>
-                <button className="button muted-button">Details</button>
-              </td>
-            </tr>
-          ))
-        ) : (
+    <div className="flex-large">
+      <h4>All Employees</h4>
+      <table>
+        <thead>
           <tr>
-            <td colSpan={3}>No Employees</td>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Role</th>
+            <th>Expertise</th>
+            <th></th>
           </tr>
-        )}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {props.employees.length > 0 ? (
+            props.employees.map((employee) => (
+              <tr key={employee.id}>
+                <td>{employee.first_name}</td>
+                <td>{employee.last_name}</td>
+                <td>{getEdad(employee.birth_day)}</td>
+                <td>{employee.employee_type}</td>
+                <td>
+                  {employee.designer_type === null
+                    ? employee.programming_language
+                    : employee.designer_type}
+                </td>
+                <td></td>
+                <td>
+                  <button
+                    className="button muted-button"
+                    onClick={() => {
+                      props.editRow(employee);
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="button muted-button"
+                    onClick={() => {
+                      props.deleteEmployee(employee.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                  <button className="button muted-button">Details</button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={3}>No Employees</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
