@@ -4,7 +4,7 @@ import axios from 'axios'; // import the library AXIOS
 // in this case is a mock with "jsonplaceholder" (it's momentary)
 
 // create a const with API's address
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL = 'http://localhost:4000/api_cs';
 
 // exports a const that containt the API's URL
 // with method create we can instance of axios
