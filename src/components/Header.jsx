@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Header = (props) => {
+  //Function to return age from birth date employee
   function getAge(dateString) {
     let hoy = new Date();
     let fechaNacimiento = new Date(dateString);
@@ -15,6 +16,7 @@ const Header = (props) => {
     return edad;
   }
 
+  //Function to calculate average age from the list
   function Average(array) {
     const arrayEmployees = array;
     var suma = 0;
