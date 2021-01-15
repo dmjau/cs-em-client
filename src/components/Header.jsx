@@ -42,6 +42,9 @@ const Header = (props) => {
         <HeaderName />
       </div>
       <div className="flex-large-header">
+        <button className="button muted-button">Edit</button>
+      </div>
+      <div className="flex-large-header">
         <h5>{props.employees.length} Employees</h5>
       </div>
       <div className="flex-large-header">
