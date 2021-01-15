@@ -614,6 +614,7 @@ dd {
   padding-left: 1rem;
   padding-right: 1rem;
   margin-left: 20px;
+  margin-top: 5px;
 }
 
 .flex-row {
@@ -892,6 +893,7 @@ a.muted-button {
   background: transparent;
   border: 1px solid #cdcdcd;
   color: #4e4e4e;
+  margin-top: 5px;
 }
 
 .muted-button:hover,

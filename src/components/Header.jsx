@@ -1,4 +1,5 @@
 import React from 'react';
+import HeaderName from './HeaderName';
 
 const Header = (props) => {
   //Function to return age from birth date employee
@@ -38,7 +39,7 @@ const Header = (props) => {
   return (
     <div className="flex-row header">
       <div className="flex-large-header">
-        <h5>NOMBRE DE LA EMPRESA MODELO</h5>
+        <HeaderName />
       </div>
       <div className="flex-large-header">
         <h5>{props.employees.length} Employees</h5>
