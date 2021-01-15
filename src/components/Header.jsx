@@ -1,0 +1,51 @@
+import React from 'react';
+
+const Header = (props) => {
+  function getAge(dateString) {
+    let hoy = new Date();
+    let fechaNacimiento = new Date(dateString);
+    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+    let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth();
+    if (
+      diferenciaMeses < 0 ||
+      (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
+    ) {
+      edad--;
+    }
+    return edad;
+  }
+
+  function Average(array) {
+    const arrayEmployees = array;
+    var suma = 0;
+    var total = arrayEmployees.length;
+    var average = 0;
+    arrayEmployees.forEach(function (employee) {
+      const age = getAge(employee.birth_day);
+      suma += age;
+    });
+    if (arrayEmployees.length > 0) {
+      average = suma / total;
+    } else {
+      average = 0;
+    }
+    console.log(average);
+    return average;
+  }
+
+  return (
+    <div className="flex-row header">
+      <div className="flex-large-header">
+        <h5>NOMBRE DE LA EMPRESA MODELO</h5>
+      </div>
+      <div className="flex-large-header">
+        <h5>{props.employees.length} Employees</h5>
+      </div>
+      <div className="flex-large-header">
+        <h5>{Average(props.employees)} Age Average</h5>
+      </div>
+    </div>
+  );
+};
+
+export default Header;

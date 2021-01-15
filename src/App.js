@@ -3,6 +3,7 @@ import EmployeeTable from './components/EmployeeTable';
 import { v4 as uuidv4 } from 'uuid';
 import AddEmployeeForm from './components/AddEmployeeForm';
 import EditEmployeeForm from './components/EditEmployeeForm';
+import Header from './components/Header';
 
 function App() {
   const employeesData = [
@@ -111,9 +112,11 @@ function App() {
 
   return (
     <div className="container">
-      <h1>HEADER</h1>
+      {/* Component Header */}
+      <Header employees={employees} />
       <div className="flex-row">
         <div className="flex-large">
+          {/* Change Form if is Add New Employee or Edit Employee */}
           {editing ? (
             <div>
               <h2>Edit Employee</h2>
@@ -134,7 +137,8 @@ function App() {
         </div>
       </div>
       <div className="flex-row">
-        <h2>All Employees</h2>
+        {/* Table whit all employees */}
+        <h4>All Employees</h4>
         <EmployeeTable
           employees={employees}
           deleteEmployee={deleteEmployee}
