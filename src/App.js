@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import EmployeeTable from './components/EmployeeTable';
-import { v4 as uuidv4 } from 'uuid';
+//import { v4 as uuidv4 } from 'uuid';
 import AddEmployeeForm from './components/AddEmployeeForm';
 import EditEmployeeForm from './components/EditEmployeeForm';
 import Header from './components/Header';
@@ -14,6 +14,7 @@ function App() {
     getAllEmployees();
   }, []);
 
+  //Connection to get all employees
   const getAllEmployees = () => {
     employeeServices
       .getAll()
@@ -28,8 +29,14 @@ function App() {
 
   //Add New User
   const addEmployee = (employee) => {
-    employee.id = uuidv4();
-    setEmployees([...employees, employee]);
+    //employee.id = uuidv4();
+    //setEmployees([...employees, employee]);
+    employeeServices
+      .postNewEmployee(employee)
+      .then(console.log(employee))
+      .catch((err) => {
+        console.log('Unexpected Error', err);
+      });
   };
 
   //Delete Employee

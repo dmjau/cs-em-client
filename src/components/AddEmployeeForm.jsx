@@ -18,6 +18,13 @@ const AddEmployeeForm = (props) => {
     }
 
     console.log(data.birth_date);
+    var fecha = new Date(data.birth_date)
+      .toISOString()
+      .slice(0, 19)
+      .replace('T', ' ');
+    console.log(fecha);
+    data.birth_date = fecha;
+
     props.addEmployee(data);
 
     //Clean fields
