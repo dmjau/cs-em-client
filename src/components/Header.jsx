@@ -28,7 +28,7 @@ const Header = (props) => {
       suma += age;
     });
     if (arrayEmployees.length > 0) {
-      average = suma / total;
+      average = (suma / total).toFixed(2);
     } else {
       average = 0;
     }
