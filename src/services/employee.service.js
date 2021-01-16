@@ -6,7 +6,7 @@ const EMPLOYEES_ENDPOINT = {
   EMPLOYEE_ID: '/employees/' // URI to get employee data by id, edit an employee by id or delete an employee by id
 };
 
-export const companyService = {
+export const employeeServices = {
   // Function to return the list of employees
   getAll: () =>
     new Promise((resolve, reject) => {

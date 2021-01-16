@@ -1,66 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EmployeeTable from './components/EmployeeTable';
 import { v4 as uuidv4 } from 'uuid';
 import AddEmployeeForm from './components/AddEmployeeForm';
 import EditEmployeeForm from './components/EditEmployeeForm';
 import Header from './components/Header';
+import { employeeServices } from './services/employee.service';
 
 function App() {
-  const employeesData = [
-    {
-      id: uuidv4(),
-      company_id: '1',
-      first_name: 'Ana',
-      last_name: 'Suarez',
-      birth_day: '1998-02-22',
-      employee_type: 'programmer',
-      designer_type: null,
-      programming_language: 'Java'
-    },
-    {
-      id: uuidv4(),
-      company_id: '1',
-      first_name: 'Juan',
-      last_name: 'Gimenez',
-      birth_day: '1987-11-14',
-      employee_type: 'programmer',
-      designer_type: null,
-      programming_language: 'JavaScript'
-    },
-    {
-      id: uuidv4(),
-      company_id: '1',
-      first_name: 'Samanta',
-      last_name: 'Freitas',
-      birth_day: '1993-01-21',
-      employee_type: 'programmer',
-      designer_type: null,
-      programming_language: 'Kotlin'
-    },
-    {
-      id: uuidv4(),
-      company_id: '1',
-      first_name: 'Matias',
-      last_name: 'Kruk',
-      birth_day: '1995-09-24',
-      employee_type: 'Designer',
-      designer_type: 'Web',
-      programming_language: null
-    },
-    {
-      id: uuidv4(),
-      company_id: '1',
-      first_name: 'Carolina',
-      last_name: 'Truts',
-      birth_day: '2001-08-02',
-      employee_type: 'Designer',
-      designer_type: 'Graphic',
-      programming_language: null
-    }
-  ];
-
   //State
-  const [employees, setEmployees] = useState(employeesData);
+  const [employees, setEmployees] = useState([]);
+
+  useEffect(() => {
+    getAllEmployees();
+  }, []);
+
+  const getAllEmployees = () => {
+    employeeServices
+      .getAll()
+      .then((res) => {
+        setEmployees(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log('Unexpected Error', err);
+      });
+  };
 
   //Add New User
   const addEmployee = (employee) => {

@@ -15,7 +15,7 @@ const HeaderName = () => {
         setData(res.data.name);
       })
       .catch((err) => {
-        console.log('Unspected Error', err);
+        console.log('Unexpected Error', err);
       });
   };
 
