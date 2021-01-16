@@ -3,18 +3,19 @@ import React from 'react';
 const EmployeeTable = (props) => {
   console.log(props.employees);
 
-  function getEdad(dateString) {
-    let hoy = new Date();
-    let fechaNacimiento = new Date(dateString);
-    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-    let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth();
+  //Function to calculate Age
+  function getAge(dateString) {
+    let today = new Date();
+    let dateBorn = new Date(dateString);
+    let age = today.getFullYear() - dateBorn.getFullYear();
+    let differencesMonths = today.getMonth() - dateBorn.getMonth();
     if (
-      diferenciaMeses < 0 ||
-      (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
+      differencesMonths < 0 ||
+      (differencesMonths === 0 && today.getDate() < dateBorn.getDate())
     ) {
-      edad--;
+      age--;
     }
-    return edad;
+    return age;
   }
 
   return (
@@ -37,7 +38,7 @@ const EmployeeTable = (props) => {
               <tr key={employee.id}>
                 <td>{employee.first_name}</td>
                 <td>{employee.last_name}</td>
-                <td>{getEdad(employee.birth_day)}</td>
+                <td>{getAge(employee.birth_day)}</td>
                 <td>{employee.employee_type}</td>
                 <td>
                   {employee.designer_type === null

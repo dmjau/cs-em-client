@@ -42,6 +42,12 @@ function App() {
   //Delete Employee
   const deleteEmployee = (id) => {
     console.log(id);
+    employeeServices
+      .deleteById(id)
+      .then(console.log('Employee was Deleted'))
+      .catch((err) => {
+        console.log('Unexpected Error', err);
+      });
     const arrayFilter = employees.filter((employee) => employee.id !== id);
     setEmployees(arrayFilter);
   };
