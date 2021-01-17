@@ -17,13 +17,11 @@ const AddEmployeeForm = (props) => {
       data.programming_language = null;
     }
 
-    console.log(data.birth_date);
-    var fecha = new Date(data.birth_date)
-      .toISOString()
-      .slice(0, 19)
-      .replace('T', ' ');
-    console.log(fecha);
-    data.birth_date = fecha;
+    console.log(data.birth_day);
+    //var fecha = new Date(data.birth_date).toISOString();
+
+    //console.log(fecha);
+    //data.birth_date = fecha;
 
     props.addEmployee(data);
 
@@ -62,7 +60,7 @@ const AddEmployeeForm = (props) => {
           <label>Birthdate</label>
           <input
             type="date"
-            name="birth_date"
+            name="birth_day"
             ref={register({
               required: { value: true, message: 'It is required' }
             })}
