@@ -18,6 +18,11 @@ const EmployeeTable = (props) => {
     return age;
   }
 
+  //Function to capitalize text
+  function Capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   return (
     <div className="flex-large">
       <h4>All Employees</h4>
@@ -36,14 +41,14 @@ const EmployeeTable = (props) => {
           {props.employees.length > 0 ? (
             props.employees.map((employee) => (
               <tr key={employee.id}>
-                <td>{employee.first_name}</td>
-                <td>{employee.last_name}</td>
+                <td>{Capitalize(employee.first_name)}</td>
+                <td>{Capitalize(employee.last_name)}</td>
                 <td>{getAge(employee.birth_day)}</td>
-                <td>{employee.employee_type}</td>
+                <td>{Capitalize(employee.employee_type)}</td>
                 <td>
                   {employee.designer_type === null
-                    ? employee.programming_language
-                    : employee.designer_type}
+                    ? Capitalize(employee.programming_language)
+                    : Capitalize(employee.designer_type)}
                 </td>
                 <td></td>
                 <td>

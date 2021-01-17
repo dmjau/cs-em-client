@@ -37,6 +37,7 @@ function App() {
       .catch((err) => {
         console.log('Unexpected Error', err);
       });
+    setEmployees([...employees, employee]);
   };
 
   //Edit Employee

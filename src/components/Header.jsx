@@ -4,17 +4,17 @@ import HeaderName from './HeaderName';
 const Header = (props) => {
   //Function to return age from birth date employee
   function getAge(dateString) {
-    let hoy = new Date();
-    let fechaNacimiento = new Date(dateString);
-    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-    let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth();
+    let today = new Date();
+    let dateBorn = new Date(dateString);
+    let age = today.getFullYear() - dateBorn.getFullYear();
+    let differencesMonths = today.getMonth() - dateBorn.getMonth();
     if (
-      diferenciaMeses < 0 ||
-      (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
+      differencesMonths < 0 ||
+      (differencesMonths === 0 && today.getDate() < dateBorn.getDate())
     ) {
-      edad--;
+      age--;
     }
-    return edad;
+    return age;
   }
 
   //Function to calculate average age from the list
@@ -32,7 +32,6 @@ const Header = (props) => {
     } else {
       average = 0;
     }
-    console.log(average);
     return average;
   }
 

@@ -16,13 +16,7 @@ const AddEmployeeForm = (props) => {
     } else {
       data.programming_language = null;
     }
-
-    console.log(data.birth_day);
-    //var fecha = new Date(data.birth_date).toISOString();
-
-    //console.log(fecha);
-    //data.birth_date = fecha;
-
+    //Send data to register
     props.addEmployee(data);
 
     //Clean fields
