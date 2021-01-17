@@ -6,7 +6,7 @@ const COMPANY_ENDPOINT = {
   EDIT: '/companies/' // URI to edit company name
 };
 
-export const companyService = {
+export const companyServices = {
   // function to return the basic data of the company
   getData: () =>
     new Promise((resolve, reject) => {

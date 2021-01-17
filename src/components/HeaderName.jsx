@@ -1,28 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { companyService } from '../services/company.services';
+import React from 'react';
 
-const HeaderName = () => {
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    companyService
-      .getData()
-      .then((res) => {
-        setData(res.data.name);
-      })
-      .catch((err) => {
-        console.log('Unexpected Error', err);
-      });
-  };
-
+const HeaderName = (props) => {
   return (
-    <div>
+    <div className="flex-row">
+      <div className="flex-large-header">
+        <button
+          className="button muted-button"
+          onClick={() => {
+            props.editRow();
+          }}
+        >
+          Edit
+        </button>
+      </div>
       <div className="flex-large">
-        <h5>{data}</h5>
+        <h5>{props.dataCompany}</h5>
       </div>
     </div>
   );

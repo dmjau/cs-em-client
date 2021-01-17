@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import HeaderName from './HeaderName';
+import EditHeaderName from './EditHeaderName';
 import { companyServices } from '../services/company.services';
 
 const Header = (props) => {
-  //State
-  const [companies, setCompanies] = useState([]);
+  const [dataCompany, setDataCompany] = useState();
+
+  useEffect(() => {
+    getDataCompany();
+  }, []);
 
   //Function to return age from birth date employee
   function getAge(dateString) {
@@ -39,43 +43,72 @@ const Header = (props) => {
     return average;
   }
 
+  //Get company data and save on state component
+  const getDataCompany = () => {
+    companyServices
+      .getData()
+      .then((res) => {
+        setDataCompany(res.data.name);
+      })
+      .catch((err) => {
+        console.log('Unexpected Error', err);
+      });
+  };
+
   //Edit company name
-  const [editing, setEditing] = useState(false);
   const initialFormState = {
-    id: '1',
     name: ''
   };
+
+  const [editing, setEditing] = useState(false);
+
   const [currentCompany, setCurrentCompany] = useState(initialFormState);
-  const editRow = (company) => {
+
+  //Function on button to render edit form company name
+  const editRow = () => {
     setEditing(true);
     setCurrentCompany({
-      id: company.id,
-      name: company.name
-    });
+      name: dataCompany
+    }); //Send company name to child component EditHeaderName
   };
+
+  //Function on button to render name at send update company name
+  const sendRow = () => {
+    setEditing(false);
+  };
+
+  //Method to update companu name using company services
   const updateCompany = (id, updateCompany) => {
     setEditing(false);
     companyServices
       .updateById(id, updateCompany)
-      .then(console.log('Updated company'))
+      .then(console.log('Updated company name'))
       .catch((err) => {
         console.log('Unexpected Error', err);
       });
-    setCompanies(
-      companies.map((company) =>
-        companies.id === id ? updateCompany : company
-      )
-    );
+    setDataCompany(updateCompany.name);
   };
 
   return (
     <div className="flex-row header">
-      <div className="flex-large-header">
-        <HeaderName />
-      </div>
-      <div className="flex-large-header">
-        <button className="button muted-button">Edit</button>
-      </div>
+      {/* Change Form if is company name or edit company name */}
+      {editing ? (
+        <div className="flex-row">
+          <div className="flex-large-header">
+            <EditHeaderName
+              currentCompany={currentCompany}
+              updateCompany={updateCompany}
+              sendRow={sendRow}
+            />
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className="flex-large-header">
+            <HeaderName dataCompany={dataCompany} editRow={editRow} />
+          </div>
+        </div>
+      )}
       <div className="flex-large-header">
         <h5>{props.employees.length} Employees</h5>
       </div>
