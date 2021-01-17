@@ -4,6 +4,7 @@ import AddEmployeeForm from './components/AddEmployeeForm';
 import EditEmployeeForm from './components/EditEmployeeForm';
 import Header from './components/Header';
 import { employeeServices } from './services/employee.service';
+import ViewDetailEmployee from './components/ViewDetailEmployee';
 
 function App() {
   //State
@@ -35,6 +36,26 @@ function App() {
         console.log('Unexpected Error', err);
       });
     setEmployees([...employees, employee]);
+  };
+
+  //View detail employee
+  const [detail, setDetail] = useState(false);
+  const [detailEmployee, setDetailEmployee] = useState();
+  const showView = (employee) => {
+    setDetail(true);
+    setDetailEmployee({
+      id: employee.id,
+      company_id: employee.company_id,
+      first_name: employee.first_name,
+      last_name: employee.last_name,
+      birth_day: convertDate(employee.birth_day),
+      employee_type: employee.employee_type,
+      designer_type: employee.designer_type,
+      programming_language: employee.programming_language
+    });
+  };
+  const hideView = () => {
+    setDetail(false);
   };
 
   //Edit Employee
@@ -81,7 +102,6 @@ function App() {
   //Convert format to Date from DB
   function convertDate(dateString) {
     var dateFormat = new Date(dateString).toISOString().slice(0, 10);
-    console.log(dateFormat);
     return dateFormat;
   }
 
@@ -121,7 +141,18 @@ function App() {
           )}
         </div>
         <div className="flex-large">
-          <h2>View Employee Detail</h2>
+          {/* Change Form if is Add New Employee or Edit Employee */}
+          {detail ? (
+            <div>
+              <h2>Employee Detail</h2>
+              <ViewDetailEmployee
+                detailEmployee={detailEmployee}
+                hideView={hideView}
+              />
+            </div>
+          ) : (
+            <div />
+          )}
         </div>
       </div>
       <div className="flex-row">
@@ -131,6 +162,7 @@ function App() {
           deleteEmployee={deleteEmployee}
           setEditing={setEditing}
           editRow={editRow}
+          showView={showView}
         />
       </div>
     </div>

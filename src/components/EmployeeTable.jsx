@@ -66,7 +66,14 @@ const EmployeeTable = (props) => {
                   >
                     Delete
                   </button>
-                  <button className="button muted-button">Details</button>
+                  <button
+                    className="button muted-button"
+                    onClick={() => {
+                      props.showView(employee);
+                    }}
+                  >
+                    Details
+                  </button>
                 </td>
               </tr>
             ))
