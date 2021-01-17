@@ -1,8 +1,6 @@
 import React from 'react';
 
 const EmployeeTable = (props) => {
-  console.log(props.employees);
-
   //Function to calculate Age
   function getAge(dateString) {
     let today = new Date();

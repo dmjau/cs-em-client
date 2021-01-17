@@ -8,17 +8,15 @@ const EditEmployeeForm = (props) => {
     defaultValues: props.currentEmployee
   });
 
+  //Full fields with data from current employee
   setValue('first_name', props.currentEmployee.first_name);
   setValue('last_name', props.currentEmployee.last_name);
   setValue('birth_day', props.currentEmployee.birth_day);
-  console.log(props.currentEmployee.birth_day);
-  var dateEmp = props.currentEmployee.birth_day;
-  console.log(dateEmp);
-
   setValue('employee_type', props.currentEmployee.employee_type);
   setValue('designer_type', props.currentEmployee.designer_type);
   setValue('programming_language', props.currentEmployee.programming_language);
 
+  //Send data to edit
   const onSubmit = (data, e) => {
     console.log(data);
     data.id = props.currentEmployee.id;

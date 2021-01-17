@@ -59,12 +59,19 @@ function App() {
       company_id: employee.company_id,
       first_name: employee.first_name,
       last_name: employee.last_name,
-      birth_day: employee.birth_day,
+      birth_day: convertDate(employee.birth_day),
       employee_type: employee.employee_type,
       designer_type: employee.designer_type,
       programming_language: employee.programming_language
     });
   };
+
+  //Convert format to Date from DB
+  function convertDate(dateString) {
+    var dateFormat = new Date(dateString).toISOString().slice(0, 10);
+    console.log(dateFormat);
+    return dateFormat;
+  }
   const updateEmployee = (id, updateEmployee) => {
     setEditing(false);
     setEmployees(
