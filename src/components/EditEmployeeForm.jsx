@@ -2,8 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const EditEmployeeForm = (props) => {
-  console.log(props.currentEmployee);
-
   const { register, errors, handleSubmit, setValue } = useForm({
     defaultValues: props.currentEmployee
   });
@@ -18,7 +16,6 @@ const EditEmployeeForm = (props) => {
 
   //Send data to edit
   const onSubmit = (data, e) => {
-    console.log(data);
     data.id = props.currentEmployee.id;
     data.company_id = '1';
 

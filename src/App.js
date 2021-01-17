@@ -28,8 +28,6 @@ function App() {
 
   //Add New User
   const addEmployee = (employee) => {
-    //employee.id = uuidv4();
-    //setEmployees([...employees, employee]);
     employeeServices
       .postNewEmployee(employee)
       .then(console.log(employee))
@@ -65,15 +63,14 @@ function App() {
       programming_language: employee.programming_language
     });
   };
-
-  //Convert format to Date from DB
-  function convertDate(dateString) {
-    var dateFormat = new Date(dateString).toISOString().slice(0, 10);
-    console.log(dateFormat);
-    return dateFormat;
-  }
   const updateEmployee = (id, updateEmployee) => {
     setEditing(false);
+    employeeServices
+      .updateById(id, updateEmployee)
+      .then(console.log('Updated employee'))
+      .catch((err) => {
+        console.log('Unexpected Error', err);
+      });
     setEmployees(
       employees.map((employee) =>
         employee.id === id ? updateEmployee : employee
@@ -81,12 +78,19 @@ function App() {
     );
   };
 
+  //Convert format to Date from DB
+  function convertDate(dateString) {
+    var dateFormat = new Date(dateString).toISOString().slice(0, 10);
+    console.log(dateFormat);
+    return dateFormat;
+  }
+
   //Delete Employee
   const deleteEmployee = (id) => {
     console.log(id);
     employeeServices
       .deleteById(id)
-      .then(console.log('Employee was Deleted'))
+      .then(console.log('Deleted employee'))
       .catch((err) => {
         console.log('Unexpected Error', err);
       });

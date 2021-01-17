@@ -42,7 +42,7 @@ export const employeeServices = {
         });
     }),
   // Function to edit an employee by id
-  updateById: (data, id) =>
+  updateById: (id, data) =>
     new Promise((resolve, reject) => {
       API.patch(EMPLOYEES_ENDPOINT.EMPLOYEE_ID + id, data)
         .then((res) => {
