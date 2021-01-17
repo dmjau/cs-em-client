@@ -7,7 +7,7 @@ const EMPLOYEES_ENDPOINT = {
 };
 
 export const employeeServices = {
-  // Function to return the list of employees
+  // Function to return the list of employees--------------------------------------------------------------------------------------------
   getAll: () =>
     new Promise((resolve, reject) => {
       API.get(EMPLOYEES_ENDPOINT.EMPLOYEE_DATA)
@@ -18,7 +18,7 @@ export const employeeServices = {
           reject(err);
         });
     }),
-  // Function to get an employee by id
+  // Function to get an employee by id----------------------------------------------------------------------------------------------------
   getById: (id) =>
     new Promise((resolve, reject) => {
       API.get(EMPLOYEES_ENDPOINT.EMPLOYEE_ID + id)
@@ -29,10 +29,9 @@ export const employeeServices = {
           reject(err);
         });
     }),
-  // Function to post a new employee
+  // Function to post a new employee-------------------------------------------------------------------------------------------------------
   postNewEmployee: (data) =>
     new Promise((resolve, reject) => {
-      console.log(data);
       API.post(EMPLOYEES_ENDPOINT.EMPLOYEE_DATA, data)
         .then((res) => {
           resolve(res.data);
@@ -41,7 +40,8 @@ export const employeeServices = {
           reject(err);
         });
     }),
-  // Function to edit an employee by id
+
+  // Function to edit an employee by id----------------------------------------------------------------------------------------------------
   updateById: (id, data) =>
     new Promise((resolve, reject) => {
       API.patch(EMPLOYEES_ENDPOINT.EMPLOYEE_ID + id, data)
@@ -52,7 +52,8 @@ export const employeeServices = {
           reject(err);
         });
     }),
-  // Function to delete an employee by id
+
+  // Function to delete an employee by id--------------------------------------------------------------------------------------------------
   deleteById: (id) =>
     new Promise((resolve, reject) => {
       API.delete(EMPLOYEES_ENDPOINT.EMPLOYEE_ID + id)

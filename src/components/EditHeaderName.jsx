@@ -6,10 +6,10 @@ const EditHeaderName = (props) => {
     defaultValues: props.currentCompany
   });
 
-  //Full fields with data from current employee
+  //Full fields with data from current employee---------------------------------------------------------------------------------------
   setValue('name', props.currentCompany.name);
 
-  //Send data to edit
+  //Send data to edit-----------------------------------------------------------------------------------------------------------------
   const onSubmit = (data, e) => {
     data.id = '1';
     //Call method to update name from Header parent

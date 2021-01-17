@@ -4,11 +4,10 @@ import { useForm } from 'react-hook-form';
 const AddEmployeeForm = (props) => {
   const { register, errors, handleSubmit } = useForm();
 
+  //Send data to create new employee
   const onSubmit = (data, e) => {
     data.id = null;
     data.company_id = '1';
-
-    console.log(data);
 
     //Validate empty fields
     if (data.designer_type === '') {

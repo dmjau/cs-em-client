@@ -4,13 +4,14 @@ import EditHeaderName from './EditHeaderName';
 import { companyServices } from '../services/company.services';
 
 const Header = (props) => {
+  //State-------------------------------------------------------------------------------------------------------------------------------
   const [dataCompany, setDataCompany] = useState();
 
   useEffect(() => {
     getDataCompany();
   }, []);
 
-  //Function to return age from birth date employee
+  //Function to return age from birth date employee-------------------------------------------------------------------------------------
   function getAge(dateString) {
     let today = new Date();
     let dateBorn = new Date(dateString);
@@ -25,7 +26,7 @@ const Header = (props) => {
     return age;
   }
 
-  //Function to calculate average age from the list
+  //Function to calculate average age from the list------------------------------------------------------------------------------------
   function Average(array) {
     const arrayEmployees = array;
     var suma = 0;
@@ -43,7 +44,7 @@ const Header = (props) => {
     return average;
   }
 
-  //Get company data and save on state component
+  //Get company data and save on state component-----------------------------------------------------------------------------------------
   const getDataCompany = () => {
     companyServices
       .getData()
@@ -55,13 +56,11 @@ const Header = (props) => {
       });
   };
 
-  //Edit company name
+  //Edit company name--------------------------------------------------------------------------------------------------------------------
   const initialFormState = {
     name: ''
   };
-
   const [editing, setEditing] = useState(false);
-
   const [currentCompany, setCurrentCompany] = useState(initialFormState);
 
   //Function on button to render edit form company name
@@ -71,13 +70,12 @@ const Header = (props) => {
       name: dataCompany
     }); //Send company name to child component EditHeaderName
   };
-
   //Function on button to render name at send update company name
   const sendRow = () => {
     setEditing(false);
   };
 
-  //Method to update companu name using company services
+  //Method to update company name using company services---------------------------------------------------------------------------------
   const updateCompany = (id, updateCompany) => {
     setEditing(false);
     companyServices

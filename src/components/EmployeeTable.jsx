@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EmployeeTable = (props) => {
-  //Function to calculate Age
+  //Function to calculate Age---------------------------------------------------------------------------------------------------------
   function getAge(dateString) {
     let today = new Date();
     let dateBorn = new Date(dateString);
@@ -16,7 +16,7 @@ const EmployeeTable = (props) => {
     return age;
   }
 
-  //Function to capitalize text
+  //Function to capitalize text-------------------------------------------------------------------------------------------------------
   function Capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }

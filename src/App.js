@@ -7,14 +7,14 @@ import { employeeServices } from './services/employee.service';
 import ViewDetailEmployee from './components/ViewDetailEmployee';
 
 function App() {
-  //State
+  //State--------------------------------------------------------------------------------------------------------------
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     getAllEmployees();
   }, []);
 
-  //Connection to get all employees
+  //Connection to get all employees------------------------------------------------------------------------------------
   const getAllEmployees = () => {
     employeeServices
       .getAll()
@@ -27,18 +27,18 @@ function App() {
       });
   };
 
-  //Add New User
+  //Add New User-------------------------------------------------------------------------------------------------------
   const addEmployee = (employee) => {
     employeeServices
       .postNewEmployee(employee)
-      .then(console.log(employee))
+      .then(console.log('Added New Employee'))
       .catch((err) => {
         console.log('Unexpected Error', err);
       });
     setEmployees([...employees, employee]);
   };
 
-  //View detail employee
+  //View detail employee-----------------------------------------------------------------------------------------------
   const [detail, setDetail] = useState(false);
   const [detailEmployee, setDetailEmployee] = useState();
   const showView = (employee) => {
@@ -58,7 +58,7 @@ function App() {
     setDetail(false);
   };
 
-  //Edit Employee
+  //Edit Employee-------------------------------------------------------------------------------------------------------
   const [editing, setEditing] = useState(false);
   const initialFormState = {
     id: null,
@@ -99,15 +99,14 @@ function App() {
     );
   };
 
-  //Convert format to Date from DB
+  //Convert format to Date from DB------------------------------------------------------------------------------------------------------
   function convertDate(dateString) {
     var dateFormat = new Date(dateString).toISOString().slice(0, 10);
     return dateFormat;
   }
 
-  //Delete Employee
+  //Delete Employee--------------------------------------------------------------------------------------------------------------------
   const deleteEmployee = (id) => {
-    console.log(id);
     employeeServices
       .deleteById(id)
       .then(console.log('Deleted employee'))
@@ -154,6 +153,9 @@ function App() {
             <div />
           )}
         </div>
+      </div>
+      <div className="flex-row">
+        <h5> </h5>
       </div>
       <div className="flex-row">
         {/* Table whit all employees */}

@@ -7,7 +7,7 @@ const COMPANY_ENDPOINT = {
 };
 
 export const companyServices = {
-  // function to return the basic data of the company
+  // function to return the basic data of the company---------------------------------------------------------------------------------------
   getData: () =>
     new Promise((resolve, reject) => {
       API.get(COMPANY_ENDPOINT.DATA)
@@ -18,7 +18,7 @@ export const companyServices = {
           reject(err);
         });
     }),
-  // Function to edit a company by id
+  // Function to edit a company by id------------------------------------------------------------------------------------------------------
   updateById: (id, data) =>
     new Promise((resolve, reject) => {
       API.patch(COMPANY_ENDPOINT.EDIT + id, data)
