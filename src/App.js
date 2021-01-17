@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import EmployeeTable from './components/EmployeeTable';
-//import { v4 as uuidv4 } from 'uuid';
 import AddEmployeeForm from './components/AddEmployeeForm';
 import EditEmployeeForm from './components/EditEmployeeForm';
 import Header from './components/Header';

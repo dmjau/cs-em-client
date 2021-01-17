@@ -10,7 +10,11 @@ const EditEmployeeForm = (props) => {
 
   setValue('first_name', props.currentEmployee.first_name);
   setValue('last_name', props.currentEmployee.last_name);
-  setValue('birth_date', props.currentEmployee.birth_date);
+  setValue('birth_day', props.currentEmployee.birth_day);
+  console.log(props.currentEmployee.birth_day);
+  var dateEmp = props.currentEmployee.birth_day;
+  console.log(dateEmp);
+
   setValue('employee_type', props.currentEmployee.employee_type);
   setValue('designer_type', props.currentEmployee.designer_type);
   setValue('programming_language', props.currentEmployee.programming_language);
@@ -64,7 +68,7 @@ const EditEmployeeForm = (props) => {
           <label>Birthdate</label>
           <input
             type="date"
-            name="birth_date"
+            name="birth_day"
             ref={register({
               required: { value: true, message: 'It is required' }
             })}
