@@ -2,7 +2,7 @@ import API from './config.services';
 
 // create an Object to send the URI to access
 const COMPANY_ENDPOINT = {
-  DATA: '/companies' // URI to get the basic data
+  DATA: '/companies', // URI to get the basic data
   EDIT: '/companies/' // URI to edit company name
 };
 

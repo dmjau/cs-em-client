@@ -1,7 +1,11 @@
 import React from 'react';
 import HeaderName from './HeaderName';
+import { companyServices } from '../services/company.services';
 
 const Header = (props) => {
+  //State
+  const [companies, setCompanies] = useState([]);
+
   //Function to return age from birth date employee
   function getAge(dateString) {
     let today = new Date();
@@ -34,6 +38,35 @@ const Header = (props) => {
     }
     return average;
   }
+
+  //Edit company name
+  const [editing, setEditing] = useState(false);
+  const initialFormState = {
+    id: '1',
+    name: ''
+  };
+  const [currentCompany, setCurrentCompany] = useState(initialFormState);
+  const editRow = (company) => {
+    setEditing(true);
+    setCurrentCompany({
+      id: company.id,
+      name: company.name
+    });
+  };
+  const updateCompany = (id, updateCompany) => {
+    setEditing(false);
+    companyServices
+      .updateById(id, updateCompany)
+      .then(console.log('Updated company'))
+      .catch((err) => {
+        console.log('Unexpected Error', err);
+      });
+    setCompanies(
+      companies.map((company) =>
+        companies.id === id ? updateCompany : company
+      )
+    );
+  };
 
   return (
     <div className="flex-row header">
